@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('title', 'Log in')
 
@@ -9,8 +9,8 @@
         </div>
         <div class="flex items-center justify-center flex-1 w-full">
             <div class="content w-[30rem] px-6 py-8 border rounded-lg">
-                <h2 class="text-3xl font-semibold">Log in</h2>
-                <p class="mb-8">Welcome back! 👋</p>
+                <h2 class="text-2xl font-semibold">Log in</h2>
+                <p class="mb-6 text-sm">Welcome back! 👋</p>
                 <livewire:create-login />
             </div>
         </div>

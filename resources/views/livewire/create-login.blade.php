@@ -1,4 +1,17 @@
 <div class="text-sm">
+
+    @if(session()->has('success'))
+        <div class="bg-green-100 px-4 py-2 border border-green-400 rounded mb-2">
+            <p class="text-green-600 font-medium">{{session('success')}}</p>
+        </div>
+    @endif
+
+    @if(session()->has('error'))
+        <div class="bg-red-100 px-4 py-2 border border-red-400 rounded mb-2">
+            <p class="text-red-600 font-medium">{{session('error')}}</p>
+        </div>
+    @endif
+
     {{--
         wire:submit="save" calls the save method in the CreateLogin class
         when the form is submitted.
@@ -38,14 +51,14 @@
         </div>
 
         <div class="flex gap-2 items-center mb-6 ">
-            <input type="checkbox" class="h-4 w-4" name="remember" id="remember">
+            <input wire:model="remember" type="checkbox" class="h-4 w-4" name="remember" id="remember">
             <label for="remember">Remember me</label>
         </div>
 
         <button class="w-full bg-blue-500 text-white font-medium px-4 py-2 rounded hover:bg-blue-400 mb-4"
             type="submit">Log in</button>
 
-        <p class=" text-center">Don't have an account? <a class="underline text-blue-500" href="">Register</a>
+        <p class=" text-center">Don't have an account? <a class="underline text-blue-500" href="{{route('register')}}">Register</a>
         </p>
 
     </form>
