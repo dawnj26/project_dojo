@@ -11,6 +11,7 @@
             <div class="content w-[30rem] px-6 py-8 border rounded-lg">
                 <h2 class="text-3xl font-semibold">Log in</h2>
                 <p class="mb-8">Welcome back! 👋</p>
+                {{-- Log in Form --}}
                 <livewire:create-login />
             </div>
         </div>
