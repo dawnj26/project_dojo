@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+// Routes for Authentication
+Route::controller(AuthenticationController::class)->group(function() {
+    Route::get('/', 'showLogin')->name('login');
 });
