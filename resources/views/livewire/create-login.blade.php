@@ -1,5 +1,13 @@
 <div class="text-sm">
+    {{--
+        wire:submit="save" calls the save method in the CreateLogin class
+        when the form is submitted.
+    --}}
     <form wire:submit="save">
+        {{--
+            wire:model.blur updates the variable in the CreateLogin class
+            and validates the input field when the input field loses focus.
+        --}}
         @csrf
         <div class="mb-4 ">
             <label class="block mb-1" for="email">Email</label>
