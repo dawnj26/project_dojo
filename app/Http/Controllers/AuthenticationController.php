@@ -10,7 +10,7 @@ class AuthenticationController extends Controller
     // GET methods
     public function showLogin() {
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
 
         return view('auth.login');
@@ -18,7 +18,7 @@ class AuthenticationController extends Controller
 
     public function showRegister() {
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
         return view('auth.register');
     }

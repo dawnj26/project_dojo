@@ -23,7 +23,7 @@ class CreateLogin extends Component
             return;
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function rules() {
