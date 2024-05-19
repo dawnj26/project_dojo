@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function showHome() {
-        return view('dashboard.home', [
-            'user' => Auth::user(),
-        ]);
+        return view('dashboard.home');
+    }
+
+    public function showBrowse() {
+        return view('dashboard.browse');
     }
 }

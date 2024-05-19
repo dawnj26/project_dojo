@@ -16,5 +16,5 @@ Route::controller(AuthenticationController::class)->group(function() {
 // Routes for Dashboard
 Route::prefix('dashboard')->controller(DashboardController::class)->group(function() {
     Route::get('/', 'showHome')->name('home');
-    // Route::get('/settings', 'showSettings')->name('settings');
+    Route::get('/browse', 'showBrowse')->name('browse');
 });
