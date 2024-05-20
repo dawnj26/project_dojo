@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "bun --bunx vite",
     "build": "vite build"
   },
   "devDependencies": {
