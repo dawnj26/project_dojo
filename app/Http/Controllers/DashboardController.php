@@ -8,9 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function showHome()
+    public function showHome(int $id = 0)
     {
-        return view('dashboard.home');
+        $title  = '';
+
+        if ($id === 0) {
+            $title = 'Watching';
+        } else if ($id === 1) {
+            $title = 'Plan to Watch';
+        } else {
+            $title = 'Finished';
+        }
+
+        $category = [
+            'id' => $id,
+            'title' => $title
+        ];
+
+        return view('dashboard.home', compact('category'));
     }
 
     public function showBrowse(Request $request)
@@ -72,9 +87,11 @@ class DashboardController extends Controller
         ]
         */
 
-        return view('dashboard.browse', [
+        return view(
+            'dashboard.browse', [
             'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
-        ]);
+            ]
+        );
     }
 
     public function showDetails(Request $request)
