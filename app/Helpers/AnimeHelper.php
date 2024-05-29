@@ -55,5 +55,42 @@ class AnimeHelper
         return $response->json();
     }
 
+    public function getDetail(int $id) : array {
+      $query = '
+      query ($id: Int) {
+          Page(perPage: 1) {
+            media(id: $id, type: ANIME) {
+              id
+              coverImage {
+                large
+              }
+              title {
+                romaji
+              }
+              description
+              meanScore
+              episodes
+              genres
+
+            }
+          }
+        }
+      ';
+
+      $variables = [
+          'id' => $id,
+      ];
+
+      $response = Http::withBody(json_encode([
+          'query' => $query,
+          'variables' => $variables
+      ]))->withHeader('Content-Type', 'application/json')->post($this->baseUrl);
+
+      if ($response->failed()) {
+          return [];
+      }
+
+      return $response->json();
+  }
 
 }
