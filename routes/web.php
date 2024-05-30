@@ -21,5 +21,6 @@ Route::prefix('dashboard')->controller(DashboardController::class)->group(
             ->name('home');
         Route::get('/browse', 'showBrowse')->name('browse');
         Route::get('/browse/{id}', 'showDetails')->name('details');
+        Route::get('/edit/{id}', 'showEdit')->where('id', '[0-9]+')->name('edit');
     }
 );
