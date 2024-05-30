@@ -21,12 +21,11 @@
                         @php
                             $genres = implode(', ', $anime['genres']);
                         @endphp
-                        <a href="{{ route('details', $anime['id']) }}">
-                            <livewire:detail-card id="{{ $anime['id'] }}" title="{{ $anime['title']['romaji'] }}"
-                                genre="{{ $genres }}" image="{{ $anime['coverImage']['large'] }}"
-                                description="{!! $anime['description'] !!}" totalEpisode="{{ $anime['episodes'] }}"
-                                rating="{{ $anime['meanScore'] ?? 'No ratings' }}" />
-                        </a>
+
+                        <livewire:edit-card id="{{ $anime['id'] }}" title="{{ $anime['title']['romaji'] }}"
+                            genre="{{ $genres }}" image="{{ $anime['coverImage']['large'] }}"
+                            description="{!! $anime['description'] !!}" totalEpisode="{{ $anime['episodes'] }}"
+                            rating="{{ $anime['meanScore'] ?? 'No ratings' }}" />
                     @endforeach
 
                 </div>

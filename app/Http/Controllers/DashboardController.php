@@ -3,21 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AnimeHelper;
+use App\Models\Anime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function showHome()
+    /**
+     * Show the home page.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showHome(int $id = 0)
     {
-        return view('dashboard.home');
+        $title  = '';
+
+        if ($id === 0) {
+            $title = 'Watching';
+        } else if ($id === 1) {
+            $title = 'Plan to Watch';
+        } else {
+            $title = 'Finished';
+        }
+
+        $category = [
+            'id' => $id,
+            'title' => $title
+        ];
+
+        $user = Auth::user();
+        $animes = $user->animes()->where('category_id', $id)->get();
+
+        return view('dashboard.home', compact('category', 'animes'));
     }
 
+    /**
+     * Show the browse page.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function showBrowse(Request $request)
     {
         $helper = new AnimeHelper();
-
-        $animes = $helper->getAnime($request->search ?? '', 1);
+        $query = $request->search ?? '';
+        $animes = $helper->getAnime($query, 1);
         // data structure of $animes
 
         /*
@@ -72,9 +104,12 @@ class DashboardController extends Controller
         ]
         */
 
-        return view('dashboard.browse', [
-            'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
-        ]);
+        return view(
+            'dashboard.browse', [
+            'animes' => empty($animes) ? [] : $animes['data']['Page']['media'],
+            'emptyQuery' => empty($query),
+            ]
+        );
     }
 
     public function showDetails(Request $request)
@@ -83,9 +118,24 @@ class DashboardController extends Controller
 
         $animes = $helper->getDetail($request->id);
 
-        
-        return view('dashboard.details', [
+
+        return view(
+            'dashboard.details', [
             'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
-        ]);
+            ]
+        );
+    }
+
+    public function showEdit(int $id)
+    {
+        $helper = new AnimeHelper();
+
+        $animes = $helper->getDetail($id);
+
+        return view(
+            'dashboard.edit', [
+            'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
+            ]
+        );
     }
 }

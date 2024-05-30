@@ -4,7 +4,7 @@
 @endphp
 <div class="relative p-10 flex flex-col items-center justify-center w-10/12 h-auto m-auto">
     {{-- back button with fontawesome --}}
-    <a href="{{ route('browse') }}" class="absolute top-10 left-10 text-2xl text-black">
+    <a href="{{ route('home') }}" class="absolute top-10 left-10 text-2xl text-black">
         <i class="fas fa-arrow-left"></i>
     </a>
     <img class="rounded-lg object-cover aspect[2/5] h-min shadow-xl " src="{{ $image }}" alt="image">
@@ -18,13 +18,18 @@
     </span>
 
     <div class=" mb-9">
-        <button wire:click="addAnime" class=" bg-cyan-800 text-white text-xl border-2 px-10 py-3 rounded-lg me-4">Add to
-            library</button>
+        <button wire:click="saveAnime"
+            class=" bg-cyan-800 text-white text-xl border-2 px-10 py-3 rounded-lg me-4">Save</button>
         <select wire:model="category_id" class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg ">
-            <option value="0">Watching</option>
-            <option value="1">Plan to watch</option>
-            <option value="2">Finished</option>
+            <option value="0" {{ $category_id === 0 ? 'selected' : '' }}>Watching</option>
+            <option value="1" {{ $category_id === 1 ? 'selected' : '' }}>Plan to watch</option>
+            <option value="2" {{ $category_id === 2 ? 'selected' : '' }}>Finished</option>
         </select>
+        @if ($category_id !== 2 && $anime->total_episodes !== 0)
+            <input type="number" wire:model.live="currentEp"
+                class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg " min="0"
+                max="{{ $anime->total_episodes }}">
+        @endif
     </div>
     <div class=" px-10">
         <p class=" mt-5 text-wrap text-lg mb-7 ">{!! $description !!}</p>

@@ -9,7 +9,8 @@ class AnimeHelper
 {
     private $baseUrl = 'https://graphql.anilist.co';
 
-    public function getAnime(string $search, int $page) : array {
+    public function getAnime(string $search, int $page) : array
+    {
         $query = '
         query ($id: Int, $page: Int, $search: String) {
             Page(page: $page, perPage: 10) {
@@ -43,10 +44,14 @@ class AnimeHelper
             'page' => $page,
         ];
 
-        $response = Http::withBody(json_encode([
-            'query' => $query,
-            'variables' => $variables
-        ]))->withHeader('Content-Type', 'application/json')->post($this->baseUrl);
+        $response = Http::withBody(
+            json_encode(
+                [
+                'query' => $query,
+                'variables' => $variables
+                ]
+            )
+        )->withHeader('Content-Type', 'application/json')->post($this->baseUrl);
 
         if ($response->failed()) {
             return [];
@@ -55,8 +60,9 @@ class AnimeHelper
         return $response->json();
     }
 
-    public function getDetail(int $id) : array {
-      $query = '
+    public function getDetail(int $id) : array
+    {
+        $query = '
       query ($id: Int) {
           Page(perPage: 1) {
             media(id: $id, type: ANIME) {
@@ -77,20 +83,24 @@ class AnimeHelper
         }
       ';
 
-      $variables = [
+        $variables = [
           'id' => $id,
-      ];
+        ];
 
-      $response = Http::withBody(json_encode([
-          'query' => $query,
-          'variables' => $variables
-      ]))->withHeader('Content-Type', 'application/json')->post($this->baseUrl);
+        $response = Http::withBody(
+            json_encode(
+                [
+                'query' => $query,
+                'variables' => $variables
+                ]
+            )
+        )->withHeader('Content-Type', 'application/json')->post($this->baseUrl);
 
-      if ($response->failed()) {
-          return [];
-      }
+        if ($response->failed()) {
+            return [];
+        }
 
-      return $response->json();
-  }
+        return $response->json();
+    }
 
 }
