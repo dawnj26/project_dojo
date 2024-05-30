@@ -25,6 +25,7 @@
             <option value="1" {{ $category_id === 1 ? 'selected' : '' }}>Plan to watch</option>
             <option value="2" {{ $category_id === 2 ? 'selected' : '' }}>Finished</option>
         </select>
+        {{-- When category is finished and total episodes is unknown don't show this --}}
         @if ($category_id !== 2 && $anime->total_episodes !== 0)
             <input type="number" wire:model.live="currentEp"
                 class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg " min="0"

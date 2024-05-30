@@ -36,13 +36,6 @@ class EditCard extends Component
 
     public function saveAnime()
     {
-        // if ($this->currentEp >= $anime->total_episodes) {
-        //     $anime->current_episode = $anime->total_episodes;
-        //     $anime->category_id = 2;
-        // } else {
-        //     $anime->current_episode = $this->currentEp;
-        //     $anime->category_id = $this->category_id;
-        // }
 
         // When changing category
         if ($this->anime->category_id !== $this->category_id) {
@@ -79,9 +72,6 @@ class EditCard extends Component
 
     public function render()
     {
-        // $anime = Anime::find($this->id);
-
-
         return view('livewire.edit-card');
     }
 }
