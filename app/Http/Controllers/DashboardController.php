@@ -12,7 +12,7 @@ class DashboardController extends Controller
     /**
      * Show the home page.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
@@ -48,8 +48,8 @@ class DashboardController extends Controller
     public function showBrowse(Request $request)
     {
         $helper = new AnimeHelper();
-
-        $animes = $helper->getAnime($request->search ?? '', 1);
+        $query = $request->search ?? '';
+        $animes = $helper->getAnime($query, 1);
         // data structure of $animes
 
         /*
@@ -106,7 +106,8 @@ class DashboardController extends Controller
 
         return view(
             'dashboard.browse', [
-            'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
+            'animes' => empty($animes) ? [] : $animes['data']['Page']['media'],
+            'emptyQuery' => empty($query),
             ]
         );
     }
@@ -117,9 +118,11 @@ class DashboardController extends Controller
 
         $animes = $helper->getDetail($request->id);
 
-        
-        return view('dashboard.details', [
+
+        return view(
+            'dashboard.details', [
             'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
-        ]);
+            ]
+        );
     }
 }
