@@ -18,9 +18,9 @@
     </span>
 
     <div class=" mb-9">
-        <button class=" bg-cyan-800 text-white text-xl border-2 px-10 py-3 rounded-lg me-4">Add Library</button>
-        <select class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg " name=""
-            id="">
+        <button wire:click="addAnime" class=" bg-cyan-800 text-white text-xl border-2 px-10 py-3 rounded-lg me-4">Add to
+            library</button>
+        <select wire:model="category_id" class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg ">
             <option value="0">Watching</option>
             <option value="1">Plan to watch</option>
             <option value="2">Finished</option>
