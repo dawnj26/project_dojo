@@ -17,7 +17,7 @@
                 @endif
 
                 @if (session()->has('success'))
-                    <div class="bg-green-100 px-4 py-2 border border-green-400 rounded mb-2">
+                    <div wire:transition.in.opacity.duration.200ms class="bg-green-100 px-4 py-2 border border-green-400 rounded mb-2">
                         <p class="text-green-600 font-medium">{{ session('success') }}</p>
                     </div>
                 @endif

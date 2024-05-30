@@ -1,12 +1,15 @@
 @php
     $gnre = explode(',', $genre);
-
 @endphp
 <div class="relative p-10 flex flex-col items-center justify-center w-10/12 h-auto m-auto">
     {{-- back button with fontawesome --}}
     <a href="{{ route('home') }}" class="absolute top-10 left-10 text-2xl text-black">
         <i class="fas fa-arrow-left"></i>
     </a>
+    {{-- delete button with fontawesome --}}
+    <button   wire:click="confirmDelete" class="absolute top-10 right-10 text-2xl text-red-600">
+        <i class="fa fa-trash"></i>
+    </button>
     <img class="rounded-lg object-cover aspect[2/5] h-min shadow-xl " src="{{ $image }}" alt="image">
     <h1 class="text-black font-bold text-4xl mb-4 mt-10">{{ $title }}</h1>
     <h1 class=" text-slate-600 font-medium text-xl mb-5">{{ $totalEpisode }} Episodes | {{ $rating }} / 100 score
@@ -18,7 +21,7 @@
     </span>
 
     <div class=" mb-9">
-        <button wire:click="saveAnime"
+        <button wire:click="saveAnime" 
             class=" bg-cyan-800 text-white text-xl border-2 px-10 py-3 rounded-lg me-4">Save</button>
         <select wire:model="category_id" class=" border-solid px-10 py-2 border-2 text-xl border-slate-800 rounded-lg ">
             <option value="0" {{ $category_id === 0 ? 'selected' : '' }}>Watching</option>
@@ -36,3 +39,23 @@
         <p class=" mt-5 text-wrap text-lg mb-7 ">{!! $description !!}</p>
     </div>
 </div>
+
+
+<script>
+    window.addEventListener('confirm', (event) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                @this.call('deleteAnime')
+            }
+        });
+
+    });
+</script>

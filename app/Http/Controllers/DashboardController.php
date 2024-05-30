@@ -39,6 +39,15 @@ class DashboardController extends Controller
         return view('dashboard.home', compact('category', 'animes'));
     }
 
+    public function deleteConfirm(int $id = 0)
+    {
+
+        $user = Auth::user();
+        $animes = $user->animes()->find($id)->delete();
+
+        return view('dashboard.home', compact('category', 'animes'));
+    }
+
     /**
      * Show the browse page.
      *
@@ -138,4 +147,6 @@ class DashboardController extends Controller
             ]
         );
     }
+
+
 }

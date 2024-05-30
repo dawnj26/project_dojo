@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Anime;
 use Illuminate\Support\Composer;
 use Livewire\Component;
-
+use Livewire\Attributes\On; 
 class EditCard extends Component
 {
 
@@ -69,6 +69,19 @@ class EditCard extends Component
         return redirect()->route('home')->with('success', 'Saved successfully');
 
     }
+
+    public function confirmDelete(){
+        $this->dispatch('confirm');
+    }
+
+
+    public function deleteAnime()
+    {
+        $this->anime->delete();
+        return redirect()->route('home')->with('success', 'Deleted successfully');
+
+    }
+
 
     public function render()
     {

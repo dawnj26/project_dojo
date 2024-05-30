@@ -9,10 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        <script src="https://kit.fontawesome.com/331539da09.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/331539da09.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <title>@yield('title', 'No title')</title>
     @livewireStyles()
     @vite('resources/css/app.css')
+
     @yield('head')
 </head>
 
