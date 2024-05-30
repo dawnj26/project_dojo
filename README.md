@@ -8,6 +8,7 @@ Anime tracking site for anime enthusiasts
 
 - [x] Authentication
 - [x] Search for animes
-- [ ] Add anime
-- [ ] Read anime from categories
+- [x] Add anime
+- [x] Read anime from categories
+- [x] Edit anime
 - [ ] Deleting anime
