@@ -125,4 +125,17 @@ class DashboardController extends Controller
             ]
         );
     }
+
+    public function showEdit(int $id)
+    {
+        $helper = new AnimeHelper();
+
+        $animes = $helper->getDetail($id);
+
+        return view(
+            'dashboard.edit', [
+            'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
+            ]
+        );
+    }
 }
