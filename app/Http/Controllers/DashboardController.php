@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AnimeHelper;
+use App\Models\Anime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    /**
+     * Show the home page.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
     public function showHome(int $id = 0)
     {
         $title  = '';
@@ -25,9 +33,18 @@ class DashboardController extends Controller
             'title' => $title
         ];
 
-        return view('dashboard.home', compact('category'));
+        $user = Auth::user();
+        $animes = $user->animes()->where('category_id', $id)->get();
+
+        return view('dashboard.home', compact('category', 'animes'));
     }
 
+    /**
+     * Show the browse page.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function showBrowse(Request $request)
     {
         $helper = new AnimeHelper();

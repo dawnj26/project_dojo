@@ -9,6 +9,8 @@ class Anime extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+
     protected $fillable = [
         'id',
         'title',
@@ -17,4 +19,9 @@ class Anime extends Model
         'total_episodes',
         'current_episode',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
