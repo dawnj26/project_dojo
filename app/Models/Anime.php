@@ -17,7 +17,7 @@ class Anime extends Model
         'category_id',
         'cover_image',
         'total_episodes',
-        'current_episode',
+        'user_id',
     ];
 
     public function users()

@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->unsignedInteger('category_id');
                 $table->string('cover_image', 255);
                 $table->unsignedInteger('total_episodes');
-                $table->unsignedInteger('current_episode');
+                $table->unsignedInteger('current_episode')->default(0);
                 $table->unsignedBigInteger('user_id');
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->timestamps();
