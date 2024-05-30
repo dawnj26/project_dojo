@@ -18,7 +18,7 @@
                 @endif
 
                 @foreach ($animes as $anime)
-                    <livewire:anime-card image="{{ $anime['coverImage']['large'] }}" title="{{ $anime['title']['romaji'] }}" rating="{{ $anime['meanScore'] ?? 'No ratings' }}"/>
+                    <livewire:anime-card id="{{ $anime['id'] }}" image="{{ $anime['coverImage']['large'] }}" title="{{ $anime['title']['romaji'] }}" rating="{{ $anime['meanScore'] ?? 'No ratings' }}"/>
                 @endforeach
             </div>
         </div>

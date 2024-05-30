@@ -76,4 +76,16 @@ class DashboardController extends Controller
             'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
         ]);
     }
+
+    public function showDetails(Request $request)
+    {
+        $helper = new AnimeHelper();
+
+        $animes = $helper->getDetail($request->id);
+
+        
+        return view('dashboard.details', [
+            'animes' => empty($animes) ? [] : $animes['data']['Page']['media']
+        ]);
+    }
 }
